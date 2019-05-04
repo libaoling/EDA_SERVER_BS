@@ -48,7 +48,7 @@ def login(req):
         if name_bool:
             if name_bool[0].user_pwd == password:
                 # 更新用户登陆状态与时间
-                user = User.objects.filter(user_name=username).update(login_state=1, login_time=logintime)
+                user = User.objects.get(user_name=username).update(login_state=1, login_time=logintime)
                 return JsonResponse(r(success=True,result={'msg':'登陆成功'}), json_dumps_params={'ensure_ascii': False})
             else:
                 return JsonResponse(r(False,result={'msg': '密码输入错误'}), json_dumps_params={'ensure_ascii': False})
